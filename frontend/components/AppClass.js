@@ -1,8 +1,15 @@
-import React from 'react'
+import React from "react";
 
 export default class AppClass extends React.Component {
+  // state =
+  //   position: [1,1],
+  //   matrix:
+  //   [0,0,0],
+  //   [0,1,0],
+  //   [0,0,0],
+
   render() {
-    const { className } = this.props
+    const { className } = this.props;
     return (
       <div id="wrapper" className={className}>
         <div className="info">
@@ -35,6 +42,6 @@ export default class AppClass extends React.Component {
           <input id="submit" type="submit"></input>
         </form>
       </div>
-    )
+    );
   }
 }
