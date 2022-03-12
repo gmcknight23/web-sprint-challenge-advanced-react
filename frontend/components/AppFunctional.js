@@ -70,9 +70,11 @@ export default function AppFunctional(props) {
       })
       .then((res) => {
         setMessage(res.data.message);
+        setEmail("");
       })
       .catch((err) => {
         setMessage(err.response.data.message);
+        setEmail("");
       });
   };
 

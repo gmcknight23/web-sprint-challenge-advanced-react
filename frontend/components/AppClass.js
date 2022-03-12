@@ -78,10 +78,10 @@ export default class AppClass extends React.Component {
         steps: this.state.steps,
       })
       .then((res) => {
-        this.setState({ message: res.data.message });
+        this.setState({ message: res.data.message, email: "" });
       })
       .catch((err) => {
-        this.setState({ message: err.response.data.message });
+        this.setState({ message: err.response.data.message, email: "" });
       });
   };
 
