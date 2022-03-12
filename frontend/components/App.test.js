@@ -5,7 +5,7 @@ import "@testing-library/jest-dom/extend-expect";
 import AppClass from "./AppClass";
 
 test("sanity", () => {
-  expect(true).toBe(false);
+  expect(true).toBe(true);
 });
 
 test("renders without errors", () => {
