@@ -1,6 +1,6 @@
 // Write your tests here
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import AppClass from "./AppClass";
 
@@ -12,25 +12,71 @@ test("renders without errors", () => {
   render(<AppClass />);
 });
 
-test('Does NOT render "foo"', () => {
-  const notThere = screen.queryByText("foo");
-  expect(notThere).not.toBeInTheDocument();
+test('Renders headings "Coordinates"', () => {
+  render(<AppClass />);
+  const cds = screen.queryByText("Coordinates", { exact: false });
+  expect(cds).toBeInTheDocument();
 });
 
-test('Does NOT render "Coordinates"', () => {
-  const notThere = screen.queryByText("Coordinates");
-  expect(notThere).not.toBeInTheDocument();
+test("renders message you can't go left when appropriate", () => {
+  render(<AppClass />);
+  fireEvent.click(screen.getByText("LEFT"));
+  fireEvent.click(screen.getByText("LEFT"));
+  const message = screen.getByTestId("message");
+  expect(message.textContent).toBe("You can't go left");
 });
 
-test('Does NOT render "bar"', () => {
-  const notThere = screen.queryByText("bar");
-  expect(notThere).not.toBeInTheDocument();
+test("renders message you can't go right when appropriate", () => {
+  render(<AppClass />);
+  fireEvent.click(screen.getByText("RIGHT"));
+  fireEvent.click(screen.getByText("RIGHT"));
+  const message = screen.getByTestId("message");
+  expect(message.textContent).toBe("You can't go right");
 });
 
-test('Does NOT render "baz"', () => {
-  const notThere = screen.queryByText("baz");
-  expect(notThere).not.toBeInTheDocument();
+test("reset button resets message", () => {
+  render(<AppClass />);
+  fireEvent.click(screen.getByText("reset"));
+  const message = screen.getByTestId("message");
+  expect(message.textContent).toBe("");
 });
+
+test("reset button resets coordinates", () => {
+  render(<AppClass />);
+  fireEvent.click(screen.getByText("reset"));
+  const message = screen.getByTestId("coordinates");
+  expect(message.textContent).toBe("Coordinates (2, 2)");
+});
+
+// test('Does NOT render "foo"', () => {
+//   const notThere = screen.queryByText("foo");
+//   expect(notThere).not.toBeInTheDocument();
+// });
+
+// test('Does NOT render "Coordinates"', () => {
+//   const notThere = screen.queryByText("Coordinates");
+//   expect(notThere).not.toBeInTheDocument();
+// });
+
+// test('Does NOT render "baz"', () => {
+//   const notThere = screen.queryByText("baz");
+//   expect(notThere).not.toBeInTheDocument();
+// });
+
+// describe("app component", () => {
+//   test("renders without crashing", () => {
+//     //screen.debug();
+//   });
+//   test('Renders headings "Coordinates"', () => {
+//     //const heading = document.querySelector("h2");
+//     const cds = screen.queryByText("Coordinates");
+//   });
+// });
+
+// test('renders "LEFT"', () => {
+//   const cds = screen.findByText(/left/i);
+//   expect(cds).not.toBeInTheDocument();
+// });
 
 // test('AppClass is a class-based component', () => {
 //   expect(

@@ -90,7 +90,7 @@ export default class AppClass extends React.Component {
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">
+          <h3 id="coordinates" data-testid="coordinates">
             Coordinates ({this.state.x}, {this.state.y})
           </h3>
           <h3 id="steps">
@@ -182,7 +182,9 @@ export default class AppClass extends React.Component {
           </div>
         </div>
         <div className="info">
-          <h3 id="message">{this.state.message}</h3>
+          <h3 id="message" data-testid="message">
+            {this.state.message}
+          </h3>
         </div>
         <div id="keypad">
           <button id="left" onClick={this.moveLeft}>
